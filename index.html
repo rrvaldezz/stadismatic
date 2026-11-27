@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NeuroStat | Estadística, Machine Learning y Redes Neuronales</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#ffffff;--bg2:#f3f6fb;--tx:#12202f;--mut:#56657a;--ac:#0b5fff;--ac2:#00a3a3;--card:#ffffff;--bd:#dbe3ee;--hd:#0c1b2e;--hdtx:#ffffff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1320;--bg2:#101b2d;--tx:#e8eef7;--mut:#9aa9bf;--ac:#5b9bff;--ac2:#35d0c8;--card:#13203a;--bd:#22324d;--hd:#070d17;--hdtx:#fff}}
+:root[data-theme="dark"]{--bg:#0b1320;--bg2:#101b2d;--tx:#e8eef7;--mut:#9aa9bf;--ac:#5b9bff;--ac2:#35d0c8;--card:#13203a;--bd:#22324d;--hd:#070d17;--hdtx:#fff}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hd);color:var(--hdtx)}
+nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:.5px}.logo span{color:var(--ac2)}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;align-items:center}
+nav a{font-size:.95rem;opacity:.9}nav a:hover{opacity:1;color:var(--ac2)}
+.btn{display:inline-block;background:var(--ac);color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;border:0;cursor:pointer;font-size:1rem}
+.btn.o{background:transparent;border:2px solid #fff}
+nav .btn{padding:8px 16px;font-size:.9rem;color:#fff}
+@media(max-width:760px){nav ul li:not(:last-child){display:none}}
+.hero{background:linear-gradient(135deg,#0c1b2e,#0b3a7a);color:#fff;padding:70px 0}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin:0 0 16px}
+.hero p{font-size:1.1rem;opacity:.9;max-width:520px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.hero svg{width:100%;height:auto}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}}
+section{padding:64px 0}
+.alt{background:var(--bg2)}
+h2{font-size:1.9rem;margin:0 0 8px}
+.lead{color:var(--mut);max-width:680px;margin:0 0 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:22px}
+.card h3{margin:10px 0 6px;font-size:1.1rem}.card p{margin:0;color:var(--mut);font-size:.95rem}
+.ic{width:42px;height:42px;border-radius:10px;background:var(--ac);color:#fff;display:grid;place-items:center;font-size:1.3rem}
+.steps{counter-reset:s}.steps .card{position:relative;padding-top:44px}
+.steps .card::before{counter-increment:s;content:counter(s);position:absolute;top:12px;left:20px;font-weight:800;font-size:1.5rem;color:var(--ac2)}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tags span{border:1px solid var(--bd);background:var(--card);padding:6px 14px;border-radius:999px;font-size:.9rem}
+.news .tag{font-size:.78rem;color:var(--ac2);font-weight:700;text-transform:uppercase}
+form{display:grid;gap:12px;max-width:560px}
+input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:760px){.contact{grid-template-columns:1fr}}
+.team{margin-top:40px}.team h3{margin:0 0 16px}.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}.m{text-align:center}.m .av{width:130px;height:130px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:2.4rem;font-weight:800;color:#fff;border:4px solid var(--bd)}.m h4{margin:0}.m .av{overflow:hidden;padding:0}.m .av svg,.m .av img{width:100%;height:100%;display:block;object-fit:cover}.m p{margin:2px 0 0;color:var(--mut);font-size:.9rem}
+.vids{margin-top:36px}.vids h3{margin:0 0 16px}.vg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.v{display:block;background:var(--card);border:1px solid var(--bd);border-radius:12px;overflow:hidden}.v .th{aspect-ratio:16/9;background:linear-gradient(135deg,#0c1b2e,#0b3a7a);display:grid;place-items:center}.v .pl{width:64px;height:44px;border-radius:12px;background:#f00;display:grid;place-items:center;color:#fff;font-size:1.3rem}.v b{display:block;padding:12px 14px 2px}.v small{display:block;padding:0 14px 14px;color:var(--mut)}.v:hover{border-color:var(--ac)}
+.bn{position:relative;overflow:hidden;border-radius:14px;padding:44px 36px;margin:0 0 22px;color:#fff;background:linear-gradient(120deg,var(--c1),var(--c2));box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.bn::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px 48px),repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 48px)}
+.bn::after{content:attr(data-g);position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:9rem;line-height:1;font-weight:800;opacity:.16;font-family:Georgia,serif}
+.bn small{position:relative;display:block;letter-spacing:3px;text-transform:uppercase;font-size:.75rem;opacity:.85;margin-bottom:6px}
+.bn h2{position:relative;color:#fff;margin:0;font-size:clamp(1.7rem,4vw,2.4rem)}
+.bn i{position:relative;display:block;width:60px;height:3px;background:#35d0c8;margin-top:14px;border-radius:2px}
+.news .grid{grid-template-columns:1fr}
+details.rd{margin-top:14px}details.rd summary{cursor:pointer;font-weight:700;color:var(--ac)}
+.pdf{border:1px solid var(--bd);border-radius:8px;overflow:hidden;margin-top:12px}
+.pdf .tb{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#323639;color:#fff;padding:8px 14px;font-size:.85rem}
+.pdf .pg{background:#525659;padding:16px;max-height:460px;overflow:auto}
+.sh{background:#fff;color:#1b1b1b;max-width:640px;margin:0 auto 14px;padding:34px 38px;box-shadow:0 2px 8px rgba(0,0,0,.4);font-family:Georgia,serif;font-size:.95rem;line-height:1.65}
+.sh h4{margin:0 0 10px;font-size:1.15rem}.sh p{margin:0 0 10px;color:#1b1b1b;font-size:.95rem}.sh ul{margin:0 0 10px;padding-left:20px}.sh .pn{text-align:center;font-size:.75rem;color:#777;margin:14px 0 0}
+footer{background:var(--hd);color:#cbd6e6;padding:36px 0;font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+footer a:hover{color:var(--ac2)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a class="logo" href="#inicio">Neuro<span>Stat</span></a>
+<ul>
+<li><a href="#inicio">Inicio</a></li><li><a href="#empresa">Nosotros</a></li><li><a href="#servicios">Servicios</a></li>
+<li><a href="#tecnologia">Tecnología</a></li><li><a href="#novedades">Novedades</a></li><li><a href="#contacto">Contacto</a></li>
+<li><a class="btn" href="#contacto">Cotizar</a></li>
+</ul></nav></div></header>
+
+<main>
+<div class="hero" id="inicio"><div class="wrap">
+<div>
+<h1>Convierta sus datos en decisiones con estadística e inteligencia artificial</h1>
+<p>Servicios profesionales de análisis estadístico, machine learning y redes neuronales para empresas, instituciones e investigadores.</p>
+<div class="cta"><a class="btn" href="#contacto">Solicitar cotización</a><a class="btn o" href="#servicios">Ver servicios</a></div>
+</div>
+<svg viewBox="0 0 400 300" aria-label="Red neuronal">
+<g stroke="#5b9bff" stroke-opacity=".45" stroke-width="1.2">
+<line x1="60" y1="60" x2="160" y2="40"/><line x1="60" y1="60" x2="160" y2="120"/><line x1="60" y1="60" x2="160" y2="200"/>
+<line x1="60" y1="150" x2="160" y2="40"/><line x1="60" y1="150" x2="160" y2="120"/><line x1="60" y1="150" x2="160" y2="200"/><line x1="60" y1="150" x2="160" y2="260"/>
+<line x1="60" y1="240" x2="160" y2="120"/><line x1="60" y1="240" x2="160" y2="200"/><line x1="60" y1="240" x2="160" y2="260"/>
+<line x1="160" y1="40" x2="260" y2="80"/><line x1="160" y1="120" x2="260" y2="80"/><line x1="160" y1="120" x2="260" y2="180"/>
+<line x1="160" y1="200" x2="260" y2="80"/><line x1="160" y1="200" x2="260" y2="180"/><line x1="160" y1="260" x2="260" y2="180"/>
+<line x1="260" y1="80" x2="350" y2="130"/><line x1="260" y1="180" x2="350" y2="130"/>
+</g>
+<g fill="#35d0c8"><circle cx="60" cy="60" r="10"/><circle cx="60" cy="150" r="10"/><circle cx="60" cy="240" r="10"/></g>
+<g fill="#5b9bff"><circle cx="160" cy="40" r="10"/><circle cx="160" cy="120" r="10"/><circle cx="160" cy="200" r="10"/><circle cx="160" cy="260" r="10"/></g>
+<g fill="#5b9bff"><circle cx="260" cy="80" r="10"/><circle cx="260" cy="180" r="10"/></g>
+<circle cx="350" cy="130" r="13" fill="#fff"/>
+</svg>
+</div></div>
+
+<section id="empresa"><div class="wrap">
+<div class="bn" data-g="◎" style="--c1:#0c1b2e;--c2:#0b5fff"><small>Quiénes somos</small><h2>Nuestra empresa</h2><i></i></div>
+<p class="lead">Somos un equipo de estadísticos y científicos de datos que combina rigor metodológico con técnicas modernas de aprendizaje automático. Nuestro compromiso es entregar resultados claros, reproducibles y útiles para su toma de decisiones.</p>
+<div class="grid">
+<div class="card"><div class="ic">◎</div><h3>Misión</h3><p>Hacer accesible el análisis avanzado de datos a organizaciones de todos los tamaños.</p></div>
+<div class="card"><div class="ic">✓</div><h3>Rigor</h3><p>Validación estadística, interpretación honesta de resultados y documentación completa.</p></div>
+<div class="card"><div class="ic">⚑</div><h3>Confidencialidad</h3><p>Sus datos se tratan bajo acuerdos de confidencialidad y buenas prácticas de seguridad.</p></div>
+</div>
+<div class="team"><h3>Nuestro equipo</h3><div class="tg">
+<div class="m"><div class="av"><img src="imagenes/imagen1.jpg" alt="Andres Martínez"></div><h4>Andres Martínez</h4><p>Directora · Estadística</p></div>
+<div class="m"><div class="av"><img src="imagenes/imagen2.jpg" alt="Carlos Rivera"></div><h4>Carlos Rivera</h4><p>Machine Learning</p></div>
+<div class="m"><div class="av"><img src="imagenes/imagen3.jpg" alt="Jorge Gómez"></div><h4>Jorge Gómez</h4><p>Redes Neuronales</p></div>
+<div class="m"><div class="av"><img src="imagenes/imagen4.jpg" alt="Laura Peña"></div><h4>Laura Peña</h4><p>Visualización y BI</p></div>
+</div></div></div></section>
+
+<section id="servicios" class="alt"><div class="wrap">
+<div class="bn" data-g="∑" style="--c1:#0b3a7a;--c2:#00a3a3"><small>Qué hacemos</small><h2>Servicios</h2><i></i></div>
+<p class="lead">Desde el análisis descriptivo hasta modelos predictivos con redes neuronales.</p>
+<div class="grid">
+<div class="card"><div class="ic">∑</div><h3>Análisis estadístico</h3><p>Estadística descriptiva e inferencial, pruebas de hipótesis, ANOVA, regresión y diseño de experimentos.</p></div>
+<div class="card"><div class="ic">⌁</div><h3>Modelos predictivos</h3><p>Regresión, árboles, Random Forest, Gradient Boosting y SVM para pronóstico y clasificación.</p></div>
+<div class="card"><div class="ic">❋</div><h3>Redes neuronales</h3><p>Perceptrones multicapa, redes convolucionales (CNN) y recurrentes (LSTM) para datos complejos.</p></div>
+<div class="card"><div class="ic">⏱</div><h3>Series de tiempo</h3><p>ARIMA, suavizamiento exponencial y modelos de aprendizaje profundo para pronósticos.</p></div>
+<div class="card"><div class="ic">▦</div><h3>Segmentación y clustering</h3><p>K-means, jerárquico y reducción de dimensiones (PCA) para descubrir patrones.</p></div>
+<div class="card"><div class="ic">✎</div><h3>Asesoría de tesis e investigación</h3><p>Apoyo metodológico, análisis de datos y redacción de resultados para trabajos académicos.</p></div>
+</div>
+<div class="vids"><h3>Videos sobre nuestros servicios</h3><div class="vg">
+<a class="v" href="https://www.youtube.com/results?search_query=estadistica+inferencial+explicada" target="_blank" rel="noopener"><div class="th"><div class="pl">▶</div></div><b>Estadística inferencial</b><small>Ver video en YouTube</small></a>
+<a class="v" href="https://www.youtube.com/results?search_query=machine+learning+para+principiantes" target="_blank" rel="noopener"><div class="th"><div class="pl">▶</div></div><b>Machine Learning para principiantes</b><small>Ver video en YouTube</small></a>
+<a class="v" href="https://www.youtube.com/results?search_query=series+de+tiempo+pronostico" target="_blank" rel="noopener"><div class="th"><div class="pl">▶</div></div><b>Series de tiempo y pronósticos</b><small>Ver video en YouTube</small></a>
+</div></div></div></section>
+
+<section id="proceso"><div class="wrap">
+<div class="bn" data-g="→" style="--c1:#2b1b6b;--c2:#0b5fff"><small>Nuestro método</small><h2>Cómo trabajamos</h2><i></i></div>
+<p class="lead">Un proceso transparente de principio a fin.</p>
+<div class="grid steps">
+<div class="card"><h3>Diagnóstico</h3><p>Entendemos su objetivo y revisamos la calidad de sus datos.</p></div>
+<div class="card"><h3>Preparación</h3><p>Limpieza, transformación e ingeniería de variables.</p></div>
+<div class="card"><h3>Modelado</h3><p>Comparamos modelos estadísticos y de ML con validación cruzada.</p></div>
+<div class="card"><h3>Entrega</h3><p>Informe, visualizaciones y código reproducible.</p></div>
+</div></div></section>
+
+<section id="tecnologia" class="alt"><div class="wrap">
+<div class="bn" data-g="❋" style="--c1:#0c1b2e;--c2:#7c4dff"><small>Herramientas</small><h2>Tecnología</h2><i></i></div>
+<p class="lead">Trabajamos con herramientas estándar de la industria y la ciencia.</p>
+<div class="tags"><span>Python</span><span>R</span><span>scikit-learn</span><span>TensorFlow</span><span>PyTorch</span><span>Keras</span><span>SPSS</span><span>Stata</span><span>Power BI</span><span>SQL</span><span>Excel</span></div>
+<div class="vids"><h3>Videos de tecnología</h3><div class="vg">
+<a class="v" href="https://www.youtube.com/results?search_query=redes+neuronales+explicadas" target="_blank" rel="noopener"><div class="th"><div class="pl">▶</div></div><b>Redes neuronales explicadas</b><small>Ver video en YouTube</small></a>
+<a class="v" href="https://www.youtube.com/results?search_query=python+scikit-learn+tutorial+espanol" target="_blank" rel="noopener"><div class="th"><div class="pl">▶</div></div><b>Python y scikit-learn</b><small>Ver video en YouTube</small></a>
+<a class="v" href="https://www.youtube.com/results?search_query=tensorflow+keras+tutorial+espanol" target="_blank" rel="noopener"><div class="th"><div class="pl">▶</div></div><b>TensorFlow y Keras</b><small>Ver video en YouTube</small></a>
+</div></div>
+</div></section>
+
+<section id="novedades"><div class="wrap news">
+<div class="bn" data-g="✦" style="--c1:#0b3a7a;--c2:#e8590c"><small>Lo último</small><h2>Novedades</h2><i></i></div>
+<p class="lead">Compartimos nuestras últimas innovaciones, guías y proyectos en el campo de la ciencia de datos.</p>
+<div class="grid">
+<div class="card"><div class="tag">Servicio nuevo</div><h3>Pronóstico con redes LSTM</h3><p>Ya ofrecemos modelos de aprendizaje profundo para series de tiempo.</p>
+<details class="rd"><summary>📄 Leer documento (PDF)</summary><div class="pdf"><div class="tb"><span>pronostico-redes-lstm.pdf</span><span>2 páginas</span></div><div class="pg">
+<div class="sh"><h4>Pronóstico con redes LSTM</h4><p>Las redes de memoria a corto y largo plazo (LSTM) son un tipo de red neuronal recurrente diseñada para aprender dependencias en secuencias de datos, como ventas mensuales, demanda de energía o variables climáticas.</p><p>A diferencia de los modelos clásicos como ARIMA, las LSTM pueden capturar relaciones no lineales y utilizar varias variables al mismo tiempo, lo que resulta útil cuando existen muchos factores que influyen en la serie.</p><div class="pn">— 1 —</div></div>
+<div class="sh"><h4>¿Cuándo conviene usarlas?</h4><ul><li>Series con patrones complejos o no lineales.</li><li>Disponibilidad de suficientes observaciones históricas.</li><li>Necesidad de incorporar variables externas.</li></ul><p>Siempre comparamos el resultado contra modelos estadísticos tradicionales y lo validamos con datos que el modelo no ha visto, para recomendar la opción más adecuada y no la más sofisticada.</p><div class="pn">— 2 —</div></div>
+</div></div></details></div>
+<div class="card"><div class="tag">Guía</div><h3>¿Regresión o red neuronal?</h3><p>Cómo elegir el modelo adecuado según el tamaño y tipo de sus datos.</p>
+<details class="rd"><summary>📄 Leer documento (PDF)</summary><div class="pdf"><div class="tb"><span>regresion-o-red-neuronal.pdf</span><span>2 páginas</span></div><div class="pg">
+<div class="sh"><h4>¿Regresión o red neuronal?</h4><p>La regresión es fácil de interpretar y funciona bien con pocos datos y relaciones sencillas. Permite explicar cuánto influye cada variable y medir la incertidumbre con intervalos de confianza.</p><p>Las redes neuronales ofrecen más flexibilidad para relaciones complejas, imágenes, texto o series largas, pero necesitan más datos y son más difíciles de interpretar.</p><div class="pn">— 1 —</div></div>
+<div class="sh"><h4>Una regla práctica</h4><ul><li>Pocos datos y necesidad de explicar: regresión.</li><li>Datos tabulares medianos: árboles y Random Forest.</li><li>Muchos datos y patrones complejos: redes neuronales.</li></ul><p>Lo recomendable es probar varias alternativas con validación cruzada y elegir según el desempeño y el objetivo del proyecto.</p><div class="pn">— 2 —</div></div>
+</div></div></details></div>
+<div class="card"><div class="tag">Taller</div><h3>Introducción a ML para empresas</h3><p>Capacitación práctica para equipos que inician en análisis de datos.</p>
+<details class="rd"><summary>📄 Leer documento (PDF)</summary><div class="pdf"><div class="tb"><span>taller-ml-empresas.pdf</span><span>2 páginas</span></div><div class="pg">
+<div class="sh"><h4>Taller: Introducción a ML para empresas</h4><p>Capacitación práctica dirigida a equipos que desean empezar a usar sus datos para tomar mejores decisiones, sin necesidad de experiencia previa en programación.</p><p>Modalidad, fechas y costo: por definir según el grupo.</p><div class="pn">— 1 —</div></div>
+<div class="sh"><h4>Contenido</h4><ul><li>Fundamentos de estadística descriptiva.</li><li>Qué es el machine learning y cuándo aplicarlo.</li><li>Introducción a modelos predictivos.</li><li>Lectura e interpretación de resultados.</li><li>Caso práctico con datos de la empresa.</li></ul><p>Para inscribirse, use el formulario de contacto.</p><div class="pn">— 2 —</div></div>
+</div></div></details></div>
+</div></div></section>
+
+<section id="contacto" class="alt"><div class="wrap"><div class="bn" data-g="@" style="--c1:#0c1b2e;--c2:#00a3a3"><small>Hablemos</small><h2>Contacto y cotización</h2><i></i></div></div><div class="wrap contact" style="margin-top:10px">
+<div>
+<h2>Escríbanos</h2>
+<p class="lead">Cuéntenos su proyecto y le responderemos con una propuesta.</p>
+<p><strong>Dirección:</strong> Su dirección aquí<br><strong>Teléfono:</strong> +00 000 000 0000<br><strong>Correo:</strong> info@neurostat.com</p>
+</div>
+<form id="f">
+<input id="n" placeholder="Nombre" required>
+<input id="e" type="email" placeholder="Correo electrónico" required>
+<select id="s"><option>Análisis estadístico</option><option>Modelos predictivos</option><option>Redes neuronales</option><option>Series de tiempo</option><option>Asesoría de tesis</option></select>
+<textarea id="m" rows="4" placeholder="Describa su proyecto" required></textarea>
+<button class="btn" type="submit">Enviar solicitud</button>
+</form>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div><strong>NeuroStat</strong><br>Estadística, Machine Learning y Redes Neuronales</div>
+<div>Su dirección aquí<br>+00 000 000 0000<br>info@neurostat.com</div>
+<div><a href="#">Términos y condiciones</a><br><a href="#">Política de privacidad</a><br>© 2026 NeuroStat. Todos los derechos reservados.</div>
+</div></footer>
+
+<script>
+document.getElementById('f').addEventListener('submit',function(ev){
+ev.preventDefault();
+var b=encodeURIComponent('Nombre: '+n.value+'\nCorreo: '+e.value+'\nServicio: '+s.value+'\n\n'+m.value);
+location.href='mailto:info@neurostat.com?subject='+encodeURIComponent('Cotización: '+s.value)+'&body='+b;
+});
+</script>
+</body>
+</html>
